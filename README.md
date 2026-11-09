@@ -47,3 +47,10 @@ rather than silently wrong.
 - `rope.substring(start: int, end: int) -> str`
 
 All mutation methods return a new `Rope`; the original is unchanged.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
